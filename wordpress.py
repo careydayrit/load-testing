@@ -1,4 +1,4 @@
-# requires python version 3
+# Author: Carey Dayrit
 from locust import HttpUser, task, between
 from bs4 import BeautifulSoup
 import time

@@ -1,6 +1,4 @@
 # Author: Carey Dayrit
-# Description: Homepage without cache
-
 import time
 
 from locust import HttpUser, task, between
