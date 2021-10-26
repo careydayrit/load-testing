@@ -10,5 +10,5 @@ class MyLocust(HttpUser):
     
     @task
     def homepage(self):
-        self.client.get("/", headers={"User-Agent":"python-requests/2.6.0 CPython/2.7.5 Linux/3.10.0-862.14.4.el7.x86_64", "Cookie": "no-cache"})
+        self.client.get("/", headers={"Cookie": "no-cache"})
         
