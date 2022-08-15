@@ -28,20 +28,21 @@ class MyLocust(HttpUser):
     
     @task
     def homepage(self, path="/"):
-        # self.client.get("/", headers={"Cookie": "no-cache"})
+        # current host
         host=self.host
-        r = self.client.get(path, headers={"Cookie": "no-cache"})
+        # fetch the homepage
+        r = self.client.get(path, headers={"Cookie": "no-cache"})        
+        # get the content of the homepage
         pq = PyQuery(r.content)
-        link_elements = pq("a")
-        self.urls_on_current_page = [] # Pass the results into an array.
-        # A loop reads the array and randomly picks a path 
+        # initialize an array with results of urls on the current page
+        self.urls_on_current_page = [] 
+        # traverse all anchor tags
+        link_elements = pq("a") 
         for l in link_elements:
             if "href" in l.attrib:
                 url = l.attrib["href"]
                 if url != "/user/logout":
-                    # Ensure we only run links of the target site, excluding specific domains too
+                    # fun links of the target site, excluding the host
                     if url.startswith(host) or url.startswith('/'):
-                        self.urls_on_current_page.append(l.attrib["href"])
-
-        for u in self.urls_on_current_page:
-            self.client.get(u)
+                        # visit the page
+                        self.client.get(l.attrib["href"])
