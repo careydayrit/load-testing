@@ -27,6 +27,11 @@ This would retrieve the sitemap and test the enlisted URL's
 locust -f wodpress.py
 ```
 
+### drupal.py
+This would traverse links related to the host
 
+```
+locust -f drupal.py
+```
 
 
